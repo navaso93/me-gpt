@@ -4,7 +4,6 @@ from dotenv import load_dotenv
 import os
 from langchain_google_genai import ChatGoogleGenerativeAI
 from langchain.chat_models import init_chat_model
-from IPython.display import Markdown
 
 
 def generate_prompt(query, context):
