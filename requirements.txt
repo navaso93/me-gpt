@@ -1,5 +1,10 @@
-openai>=1.68,<2
-streamlit>=1.43,<2
-
-# Development
-pytest>=8.3,<9
+fastapi
+uvicorn
+streamlit
+requests
+python-dotenv
+langchain
+langchain-chroma
+langchain-google-genai
+langchain-text-splitters
+langsmith
