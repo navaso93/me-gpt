@@ -1,51 +1,93 @@
-from dataclasses import dataclass
 from pathlib import Path
-import re
+from dotenv import load_dotenv
+import os
+from langchain_core.documents import Document
+from langchain_text_splitters import MarkdownHeaderTextSplitter, RecursiveCharacterTextSplitter
+
+from langchain_chroma import Chroma
+from langchain_google_genai import GoogleGenerativeAIEmbeddings
 
 
-@dataclass(frozen=True)
-class Document:
-    title: str
-    content: str
-    path: str
-    url: str | None = None
 
-
-HEADING_PATTERN = re.compile(r"^##\s+(.+)$", re.MULTILINE)
-URL_PATTERN = re.compile(r"https?://[^\s)]+")
-
-
-def split_markdown(text: str, path: str) -> list[Document]:
-    """Split Markdown on level-two headings into self-contained documents."""
-    matches = list(HEADING_PATTERN.finditer(text))
-    if not matches:
-        title = Path(path).stem.replace("_", " ").title()
-        return [Document(title=title, content=text.strip(), path=path)]
+def load_documents():
 
     documents = []
-    for index, match in enumerate(matches):
-        end = matches[index + 1].start() if index + 1 < len(matches) else len(text)
-        content = text[match.end() : end].strip()
-        urls = URL_PATTERN.findall(content)
+
+    for file_path in Path('knowledge').glob('*.md'):
+        text = file_path.read_text(encoding='utf-8')
+
         documents.append(
             Document(
-                title=match.group(1).strip(),
-                content=content,
-                path=path,
-                url=urls[0] if urls else None,
+                page_content=text,
+                metadata={'source':str(file_path)}
             )
         )
     return documents
 
 
-def load_knowledge(directory: str | Path) -> list[Document]:
-    knowledge_dir = Path(directory)
-    documents = []
-    for markdown_file in sorted(knowledge_dir.glob("*.md")):
-        documents.extend(
-            split_markdown(
-                markdown_file.read_text(encoding="utf-8"),
-                markdown_file.as_posix(),
-            )
-        )
-    return documents
+
+def split_documents(documents):
+    # "#" represents heading level 1.
+    # "##" represents heading level 2.
+    headers = [
+        ('#','category'),
+        ('##','section')
+    ]
+
+    markdown_splitter = MarkdownHeaderTextSplitter(
+        headers_to_split_on=headers,
+        strip_headers=False
+    )
+
+    sections = []
+
+    for document in documents:
+        file_sections = markdown_splitter.split_text(document.page_content)
+
+        for section in file_sections:
+            section.metadata['source'] = document.metadata['source']
+
+        sections.extend(file_sections)
+
+    text_splitter = RecursiveCharacterTextSplitter(
+        chunk_size=800,
+        chunk_overlap=150
+    )
+
+    chunks = text_splitter.split_documents(sections)
+
+    return chunks
+
+
+
+def embed_documents(chunks):
+
+    load_dotenv()
+    api_key = os.getenv("GOOGLE_API_KEY")
+
+    if not api_key:
+        raise ValueError("GOOGLE_API_KEY is missing")
+
+    embeddings = GoogleGenerativeAIEmbeddings(
+        model='models/gemini-embedding-001',
+        api_key=api_key
+    )
+
+    vector_store = Chroma(
+        collection_name='marc_gpt',
+        embedding_function=embeddings,
+        persist_directory='./chroma_db'
+    )
+
+    document_ids = vector_store.add_documents(documents=chunks)
+
+    return document_ids
+
+
+# Run the complete ingestion process from the terminal
+if __name__ == "__main__":
+    documents = load_documents()
+    chunks = split_documents(documents)
+    document_ids = embed_documents(chunks)
+
+    print(f"Embedded {len(document_ids)} chunks.")
