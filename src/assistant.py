@@ -6,7 +6,7 @@ from langchain_google_genai import ChatGoogleGenerativeAI
 from langchain.chat_models import init_chat_model
 
 
-def generate_prompt(query, context):
+def standard_prompt(query, context):
     # We create the prompt_template and then the prompt
     client = Client()
 
@@ -33,6 +33,41 @@ def generate_prompt(query, context):
     ).to_messages()
 
     return prompt
+
+
+def job_fit_prompt(job_description, context):
+
+    client = Client()
+
+    system_msg = """
+    Explain why Marc can be a good fit (or not) to the entered job description based on the available context.
+    When giving arguments, always try to provide an example if available to back the argument.
+    When you don't know something or are not sure, just say you are not sure. Do not invent.
+    Give:
+        - Fit score
+        - Strengths
+        - Gaps
+        - Recommendation
+    """
+
+    prompt_template = ChatPromptTemplate.from_messages([
+        ('system', system_msg),
+        ('human', f"""
+    Retrieved info on Marc similar to Job Description:
+    {context}
+
+    Job Description for Marc:
+    {job_description}
+    """),
+    ])
+
+    # We define the prompt
+    prompt_job_fit = prompt_template.invoke(
+        {"context": context, "question": job_description}
+    ).to_messages()
+
+    return prompt_job_fit
+
 
 def llm_answer(prompt, max_tokens=1000):
 
