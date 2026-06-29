@@ -15,8 +15,8 @@ API_URL = os.getenv(
     "http://127.0.0.1:8000",
 ).rstrip("/")
 
-PROFILE_IMAGE = Path("/home/mnavarrosotes/code/navaso93/portfolio-projects/marc-gpt/assets/profile.jpg")
-BACKGROUND_IMAGE = Path("/home/mnavarrosotes/code/navaso93/portfolio-projects/marc-gpt/assets/sunset_clouds.jpg")
+PROFILE_IMAGE = Path("assets/profile.jpg")
+BACKGROUND_IMAGE = Path("assets/sunset_clouds.jpg")
 
 
 # Page setup
