@@ -180,7 +180,7 @@ with st.container():
         st.title("Hi, I'm Marc!")
         st.subheader("And this is my AI recruitment assistant: Marc GPT")
         st.write(
-            "Marc GPT knows everything about my career, and of course some basic personal information.  \n\n"
+            "Marc GPT knows everything about my career, and of course some basic personal information that can also be relevant for career purposes.  \n\n"
             "Ask anything about my profile, experience, or skills, and it will give you all the information you need. "
             "\nYou can also paste a full job description and see how it fits my profile, and then"
             " get a score and a compatibility breakdown."
