@@ -113,6 +113,25 @@ def apply_style():
         .profile-links a:hover {{
             background: #ffedd5;
         }}
+        html, body, .stApp {{
+            color: #111827 !important;
+        }}
+
+        .stMarkdown, .stMarkdown p, .stMarkdown li, .stMarkdown span {{
+            color: #111827 !important;
+        }}
+
+        h1, h2, h3, h4 {{
+            color: #111827 !important;
+        }}
+
+        label, .stTextInput label, .stTextArea label {{
+            color: #111827 !important;
+        }}
+
+        div[data-testid="stForm"] {{
+            background: rgba(255,255,255,.92) !important;
+        }}
         </style>
         """,
         unsafe_allow_html=True,
