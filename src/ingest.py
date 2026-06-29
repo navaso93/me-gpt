@@ -9,11 +9,11 @@ from langchain_google_genai import GoogleGenerativeAIEmbeddings
 
 
 
-def load_documents():
+def load_documents(knowledge_path="knowledge"):
 
     documents = []
 
-    for file_path in Path('knowledge').glob('*.md'):
+    for file_path in Path(knowledge_path).glob('*.md'):
         text = file_path.read_text(encoding='utf-8')
 
         documents.append(

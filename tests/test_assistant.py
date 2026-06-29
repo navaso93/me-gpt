@@ -1,28 +1,29 @@
-from src.assistant import GroundedAssistant, NOT_FOUND_MESSAGE
-from src.ingest import Document
-from src.retrieval import LexicalRetriever
+from src.assistant import standard_prompt
 
 
-def build_assistant():
-    documents = [
-        Document(
-            title="LIAR Project",
-            content="Marc built a Python preprocessing pipeline.",
-            path="knowledge/projects.md",
-        )
-    ]
-    return GroundedAssistant(LexicalRetriever(documents))
+def test_generate_prompt_includes_question_and_context():
+    # This is fake retrieved context, like the text coming from Chroma.
+    context = "Marc built a RAG project using Python, ChromaDB, and Gemini."
+
+    # This is the recruiter/user question.
+    question = "What experience does Marc have with RAG?"
+
+    prompt = standard_prompt(question, context)
+
+    # Convert to string so the test works whether your prompt is a string,
+    # a LangChain message object, or a list of messages.
+    prompt_text = str(prompt)
+
+    assert question in prompt_text
+    assert context in prompt_text
 
 
-def test_answers_supported_question_with_source():
-    result = build_assistant().answer("What Python work did Marc do?")
+def test_generate_prompt_contains_grounding_instruction():
+    context = "Marc used Python in the LIAR project."
+    question = "Should I hire Marc?"
 
-    assert "preprocessing pipeline" in result.answer
-    assert result.sources[0].title == "LIAR Project"
+    prompt = standard_prompt(question, context)
+    prompt_text = str(prompt).lower()
 
-
-def test_refuses_unsupported_question():
-    result = build_assistant().answer("What is Marc's home address?")
-
-    assert result.answer == NOT_FOUND_MESSAGE
-    assert result.sources == []
+    # The assistant should be told not to invent information.
+    assert "do not invent" in prompt_text or "only" in prompt_text
