@@ -17,7 +17,7 @@ API_URL = os.getenv(
 
 PROFILE_IMAGE = Path("assets/profile.jpg")
 BACKGROUND_IMAGE = Path("assets/sunset_clouds.jpg")
-
+CV_PUBLIC_URL = "https://file.notion.com/f/f/d6e921c4-0282-44e9-a182-36b2f87e77a2/b8a74f97-4a45-47f2-af4d-1a2b3f76b653/marc_cv.pdf?table=block&id=38fa73a4-ed52-8052-9458-ff6925fdb261&spaceId=d6e921c4-0282-44e9-a182-36b2f87e77a2&expirationTimestamp=1782856800000&signature=ddaLDRHpU6RvLrs9ywnno2GBNxss66gPv4kZ3ZheOcc&downloadName=marc_cv.pdf"
 
 # Page setup
 st.set_page_config(
@@ -189,6 +189,7 @@ with st.container():
                 <a href="https://linkedin.com/in/marc-navarro-sotés/" target="_blank">LinkedIn</a>
                 <a href="mailto:mnavarrosotes@gmail.com">Email</a>
                 <a href="https://app.notion.com/p/Portfolio-Marc-Navarro-386a73a4ed5280efa99bd47efb571508">Portfolio</a>
+                <a href="https://file.notion.com/f/f/d6e921c4-0282-44e9-a182-36b2f87e77a2/b8a74f97-4a45-47f2-af4d-1a2b3f76b653/marc_cv.pdf?table=block&id=38fa73a4-ed52-8052-9458-ff6925fdb261&spaceId=d6e921c4-0282-44e9-a182-36b2f87e77a2&expirationTimestamp=1782856800000&signature=ddaLDRHpU6RvLrs9ywnno2GBNxss66gPv4kZ3ZheOcc&downloadName=marc_cv.pdf" target="_blank">Updated CV</a>
             </div>
             """,
             unsafe_allow_html=True,
@@ -197,12 +198,12 @@ with st.container():
     with text_column:
         st.markdown('<div class="hero">', unsafe_allow_html=True)
         st.title("Hi, I'm Marc!")
-        st.subheader("And this is my AI recruitment assistant: Marc GPT")
+        st.subheader("Meet Marc GPT, my CV in a chatbox")
         st.write(
-            "Marc GPT knows everything about my career, and of course some basic personal information that can also be relevant for career purposes.  \n\n"
-            "Ask anything about my profile, experience, or skills, and it will give you all the information you need. "
-            "\nYou can also paste a full job description and see how it fits my profile, and then"
-            " get a score and a compatibility breakdown."
+            "Instead of scrolling through a traditional CV and hunting for keywords among awkward bullet points, you can just ask.  \n\n"
+            "Marc GPT is my AI recruitment assistant: it uses a knowledge base about my projects, experience, skills, education, and professional interests to answer questions about me. "
+            "It is designed to stay grounded in the information I provided, so if something is not in the knowledge base, it should say so rather than freestyle.  \n\n"
+            "You can also paste a job description and get a first-pass fit analysis with a compatibility score, relevant strengths, possible gaps, and interview talking points."
         )
         st.markdown("</div>", unsafe_allow_html=True)
 
