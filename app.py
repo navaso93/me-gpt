@@ -132,6 +132,39 @@ def apply_style():
         div[data-testid="stForm"] {{
             background: rgba(255,255,255,.92) !important;
         }}
+        .feedback-button {{
+            display: inline-block;
+            margin-top: 0.75rem;
+            padding: 0.65rem 1rem;
+            border-radius: 999px;
+            background: #f97316;
+            color: white !important;
+            text-decoration: none;
+            font-weight: 700;
+        }}
+        .feedback-button:hover {{
+            background: #ea580c;
+        }}
+        .stButton > button {{
+            background-color: #f97316 !important;
+            color: white !important;
+            border: 1px solid #f97316 !important;
+            border-radius: 999px !important;
+            font-weight: 700 !important;
+        }}
+
+        .stButton > button:hover {{
+            background-color: #ea580c !important;
+            color: white !important;
+            border-color: #ea580c !important;
+        }}
+
+        .stButton > button:focus {{
+            background-color: #f97316 !important;
+            color: white !important;
+            border-color: #f97316 !important;
+            box-shadow: 0 0 0 0.2rem rgba(249, 115, 22, 0.25) !important;
+        }}
         </style>
         """,
         unsafe_allow_html=True,
@@ -274,6 +307,45 @@ with fit_tab:
                     st.subheader("Job-fit assessment")
                     st.write(fit_answer)
 
+st.divider()
+
+with st.expander("Give me feedback about Marc GPT!"):
+    feedback_topic = st.selectbox(
+        "Topic",
+        [
+            "Speed / loading time",
+            "Answer quality",
+            "Missing information",
+            "Job-fit feature",
+            "Design / readability",
+            "Mobile experience",
+            "Bugs / errors",
+            "Recruiter usefulness",
+            "Other",
+        ],
+    )
+
+    feedback_message = st.text_area(
+        "Feedback",
+        placeholder="For example: The page was slow after clicking Ask Marc GPT...",
+        height=120,
+    )
+
+    if feedback_message:
+        import urllib.parse
+
+        subject = urllib.parse.quote(f"Marc GPT feedback: {feedback_topic}")
+        body = urllib.parse.quote(feedback_message)
+
+        st.markdown(
+            f"""
+            <a class="feedback-button"
+               href="mailto:mnavarrosotes@gmail.com?subject={subject}&body={body}">
+               Send feedback by email
+            </a>
+            """,
+            unsafe_allow_html=True,
+        )
 
 # Footer
 st.divider()
