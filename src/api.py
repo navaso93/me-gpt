@@ -1,4 +1,7 @@
+import os
+
 from fastapi import FastAPI
+from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 
 from src.main import answer_question, job_fit
@@ -7,6 +10,22 @@ from src.main import answer_question, job_fit
 
 # Create the API application
 app = FastAPI()
+
+# Keep the original Streamlit client working while allowing the standalone web
+# frontend to use the same public API. Set ALLOWED_ORIGINS to a comma-separated
+# list in production to restrict browser access to known frontend domains.
+allowed_origins = [
+    origin.strip()
+    for origin in os.getenv("ALLOWED_ORIGINS", "*").split(",")
+    if origin.strip()
+]
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=allowed_origins,
+    allow_credentials="*" not in allowed_origins,
+    allow_methods=["GET", "POST", "OPTIONS"],
+    allow_headers=["Content-Type"],
+)
 
 
 # Define the expected request body

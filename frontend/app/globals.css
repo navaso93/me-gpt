@@ -1,0 +1,226 @@
+@import 'tailwindcss';
+@import 'tw-animate-css';
+@import 'shadcn/tailwind.css';
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+  --font-heading: var(--font-geist-sans);
+  --radius-sm: calc(var(--radius) * 0.6);
+  --radius-md: calc(var(--radius) * 0.8);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) * 1.4);
+  --radius-2xl: calc(var(--radius) * 1.8);
+}
+
+:root {
+  --font-geist-sans: Inter, 'Segoe UI', Arial, sans-serif;
+  --font-geist-mono: 'SFMono-Regular', Consolas, 'Liberation Mono', monospace;
+  --background: #fdfcf9;
+  --foreground: #18201d;
+  --card: #fff;
+  --card-foreground: #18201d;
+  --popover: #fff;
+  --popover-foreground: #18201d;
+  --primary: #c65f2d;
+  --primary-foreground: #fff;
+  --secondary: #f0ebe2;
+  --secondary-foreground: #39423e;
+  --muted: #f5f1ea;
+  --muted-foreground: #6f7773;
+  --accent: #e9f0eb;
+  --accent-foreground: #294538;
+  --destructive: #b42318;
+  --border: #e4ded4;
+  --input: #ddd6ca;
+  --ring: #d17a50;
+  --sidebar: #f5f1e9;
+  --sidebar-foreground: #18201d;
+  --radius: 0.75rem;
+}
+
+.dark {
+  --background: #151916;
+  --foreground: #f5f2ea;
+  --card: #1d231f;
+  --card-foreground: #f5f2ea;
+  --popover: #1d231f;
+  --popover-foreground: #f5f2ea;
+  --primary: #e08052;
+  --primary-foreground: #151916;
+  --secondary: #29302b;
+  --secondary-foreground: #e9e4da;
+  --muted: #242a26;
+  --muted-foreground: #a9b0ab;
+  --accent: #27352d;
+  --accent-foreground: #e6f0e8;
+  --destructive: #ff7167;
+  --border: #343b36;
+  --input: #404842;
+  --ring: #e08052;
+  --sidebar: #191e1a;
+  --sidebar-foreground: #f5f2ea;
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  html {
+    @apply scroll-smooth font-sans;
+  }
+  body {
+    @apply bg-background text-foreground antialiased;
+  }
+  button,
+  a {
+    @apply focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2;
+  }
+}
+
+@layer components {
+  .nav-link {
+    @apply flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium text-muted-foreground transition-colors hover:bg-white/70 hover:text-foreground;
+  }
+  .nav-link svg {
+    @apply size-4;
+  }
+  .nav-link-active {
+    @apply bg-white text-foreground shadow-[0_1px_2px_rgb(24_32_29/6%)];
+  }
+  .assistant-mark {
+    @apply flex size-9 items-center justify-center rounded-xl bg-primary text-primary-foreground shadow-[0_5px_16px_rgb(198_95_45/20%)];
+  }
+  .chat-composer {
+    @apply flex items-end gap-3 rounded-2xl border border-input bg-white p-2 pl-4 shadow-[0_8px_30px_rgb(24_32_29/8%)] transition focus-within:border-primary/50 focus-within:shadow-[0_8px_32px_rgb(198_95_45/10%)];
+  }
+  .suggestion-row {
+    @apply flex min-h-14 items-center justify-between gap-3 rounded-xl border border-border bg-background px-4 py-3 text-left text-sm font-medium leading-5 transition hover:border-primary/35 hover:bg-[#fbf6f1];
+  }
+  .sidebar-heading {
+    @apply text-[11px] font-semibold uppercase tracking-[.14em] text-muted-foreground;
+  }
+  .section-shell {
+    @apply px-5 py-10 sm:px-10 lg:px-14 lg:py-12;
+  }
+  .section-kicker {
+    @apply flex items-center gap-2 text-xs font-semibold uppercase tracking-[.16em] text-primary;
+  }
+  .status-dot {
+    @apply size-2 rounded-full bg-emerald-500 shadow-[0_0_0_4px_rgb(16_185_129/12%)];
+  }
+  .mobile-nav-link {
+    @apply flex min-w-14 flex-col items-center gap-1 rounded-xl px-3 py-1.5 text-[10px] font-semibold text-muted-foreground hover:bg-muted hover:text-foreground;
+  }
+  .mobile-nav-link svg {
+    @apply size-4;
+  }
+  .markdown-response {
+    @apply leading-7;
+  }
+  .markdown-response > * + * {
+    @apply mt-4;
+  }
+  .markdown-response h1 {
+    @apply text-xl font-semibold leading-tight text-foreground;
+  }
+  .markdown-response h2 {
+    @apply text-lg font-semibold leading-tight text-foreground;
+  }
+  .markdown-response h3 {
+    @apply text-base font-semibold leading-tight text-foreground;
+  }
+  .markdown-response strong {
+    @apply font-semibold text-foreground;
+  }
+  .markdown-response ul {
+    @apply list-disc space-y-2 pl-5;
+  }
+  .markdown-response ol {
+    @apply list-decimal space-y-2 pl-5;
+  }
+  .markdown-response li > ul,
+  .markdown-response li > ol {
+    @apply mt-2;
+  }
+  .markdown-response a {
+    @apply font-medium text-primary underline decoration-primary/35 underline-offset-4 hover:decoration-primary;
+  }
+  .markdown-response blockquote {
+    @apply border-l-2 border-primary/35 pl-4 italic text-muted-foreground;
+  }
+  .markdown-response code {
+    @apply rounded bg-muted px-1.5 py-0.5 font-mono text-[.9em] text-foreground;
+  }
+  .markdown-response hr {
+    @apply my-5 border-border;
+  }
+}
+
+.content-canvas {
+  position: relative;
+  isolation: isolate;
+  background-color: #eeeae2;
+  background-image:
+    radial-gradient(circle at 10% 16%, rgb(198 95 45 / 15%) 0, transparent 27%),
+    radial-gradient(circle at 93% 38%, rgb(67 118 91 / 14%) 0, transparent 25%),
+    radial-gradient(
+      circle at 18% 80%,
+      rgb(222 165 105 / 12%) 0,
+      transparent 24%
+    ),
+    radial-gradient(circle at 84% 88%, rgb(90 132 110 / 11%) 0, transparent 28%);
+  background-size: 135% 135%;
+  animation: ambient-drift 20s ease-in-out infinite alternate;
+}
+
+.content-column {
+  position: relative;
+  z-index: 1;
+  width: min(100%, 1240px);
+  min-height: 100%;
+  margin-inline: auto;
+  overflow: hidden;
+  background: var(--background);
+  box-shadow: 0 0 55px rgb(45 48 43 / 9%);
+}
+
+@keyframes ambient-drift {
+  0% {
+    background-position: 0% 0%;
+  }
+  50% {
+    background-position: 7% 4%;
+  }
+  100% {
+    background-position: -5% 9%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .content-canvas {
+    animation: none;
+  }
+}

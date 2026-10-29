@@ -16,6 +16,9 @@ Marc is looking for tech roles where he can continue his journey deepening into 
 Ideally, Marc finds a role that allow him to combine data and AI with his domain knowledge in the energy sector.
 However, Marc is more than happy to transition to a data position in a different sector, because right now his priority
 is to continue his journey building data pipelines and working with data.
+Marc is open to organizations of different sizes, including large corporations that are driving the energy sector
+forward. Companies such as Siemens, Tesla, Vattenfall, and General Electric illustrate the kind of major energy and
+technology players whose scale and impact appeal to him; these are examples rather than a closed list of target employers.
 
 ## Why should we hire Marc?
 You should hire Marc because his track record proves that he can create value and build tools and services both for his team and for external stakeholders.

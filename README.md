@@ -4,19 +4,24 @@ Marc GPT is a RAG-powered online CV.
 
 Recruiters can ask questions about Marc's background, projects, skills, education, and interests. The app retrieves relevant information from a public Markdown knowledge base and uses an LLM to generate grounded answers.
 
-The goal of this project is both practical and educational: to build a small but real AI product using RAG, FastAPI, Streamlit, Docker, and cloud deployment.
+The goal of this project is both practical and educational: to build a small but real AI product using RAG, FastAPI, a modern React frontend, Streamlit, Docker, and cloud deployment.
 
 ## Live Product Structure
 
-Marc GPT has two main parts:
+Marc GPT has three main parts:
 
-1. **Streamlit frontend**
+1. **Modern web frontend (`frontend/`)**
+   - Responsive conversational portfolio built with React, TypeScript, and Tailwind.
+   - Includes grounded chat, job-fit evaluation, project cards, and recruiter-friendly contact flows.
+   - Deploys independently so the original Streamlit URL remains available.
+
+2. **Streamlit frontend (`app.py`)**
    - Public user interface.
    - Lets users ask questions.
    - Lets users paste a job description for a job-fit evaluation.
    - Sends requests to the backend API.
 
-2. **FastAPI backend**
+3. **FastAPI backend**
    - Receives requests from Streamlit.
    - Retrieves relevant chunks from ChromaDB.
    - Builds a grounded prompt.
@@ -45,6 +50,11 @@ marc-gpt/
   .env.example
   .gitignore
   README.md
+
+  frontend/               # Modern standalone web experience
+    app/                   # Page, layout, and visual theme
+    components/ui/         # Accessible interface primitives
+    public/                # Profile and sharing assets
 
   knowledge/              # Public Markdown knowledge base
     profile.md
@@ -75,11 +85,15 @@ Create a local .env file:
 
 GOOGLE_API_KEY = your_google_api_key
 API_URL=http://127.0.0.1:8000
+ALLOWED_ORIGINS=http://localhost:3000,http://localhost:3001
 
 Notes:
 - GOOGLE_API_KEY is used by the backend for Gemini
 - API_URL is used by Streamlit to know where the FastAPI backend is.
+- ALLOWED_ORIGINS controls which browser frontends may call FastAPI. It defaults to `*` for backward compatibility; set an explicit list in production.
 - Never commit .env.
+
+For the modern frontend, copy `frontend/.env.example` to `frontend/.env.local` and set `VITE_API_URL` to the FastAPI deployment URL.
 
 For Streamlit Community Cloud, set API_URL in the app secrets.
 For Google Cloud Run, store GOOGLE_API_KEY in Secret Manager.
@@ -105,6 +119,16 @@ In another terminal, start Streamlit:
 ```bash
 streamlit run app.py
 ```
+
+To run the modern frontend in a third terminal:
+
+```bash
+cd frontend
+npm install
+npm run dev
+```
+
+The modern frontend is additive: these steps and the existing Streamlit deployment remain valid.
 
 ## Rebuild thevector database
 

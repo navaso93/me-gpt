@@ -22,6 +22,13 @@ Marc likes to communicate directly and appreciates when constructive feedback is
 As a manager, Marc has been responsible for 5 direct reports, across three different continents, and always got good feedback from his reports.
 Marc's managers also always have appreciated his proactiveness at work and the way he approached problems by directly jumping in.
 
+## Preferred Work Environment
+Marc is comfortable pursuing opportunities in organizations of different sizes. He would be happy to work at a large
+corporation that is helping drive the energy sector forward, including companies such as Siemens, Tesla, Vattenfall,
+General Electric, and other major industry players. What matters most is the opportunity to contribute, keep developing
+his data and technology skills, and work on challenges with meaningful impact; the examples above are illustrative and
+not an exhaustive list.
+
 ## Personal interests
 Marc is a very active person, he loves sports and outdoors activities.
 Marc has been a regular runner since his teenage years, and has run multiple half marathons as well as a full Marathon in 2025.

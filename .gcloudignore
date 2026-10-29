@@ -1,0 +1,6 @@
+# Only the runtime files required by the API image belong in Cloud Build.
+**
+!Dockerfile
+!requirements.txt
+!src/**
+!chroma_db/**

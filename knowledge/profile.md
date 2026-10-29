@@ -37,13 +37,12 @@ Marc wants to implement all his newly acquired data science and AI knowledge in 
 - Marc has been under pressure in high responsibility roles, so he does not loose calm, stays cool and he does not stress. This is proven by the many times he came across important issues affecting revenue and he always tried to find a solution with partnersto benefit clients or his own company.
 - Marc understands the importance of working overtime if needed, as proven by the large shifts he willingly made when the ocmpany was going thorugh critical periods such as raising funds for equity investment.
 - Marc has been a manager for more than two years, which makes him familiar with the main soft skills required to make a team successful in their area. A really good team player.
-- Marc's dynamicity makes him a perfect fit for small or medium companies.
+- Marc's adaptability, initiative, and experience in growing organizations can add value in small, medium, or large companies.
 
 
 ## Marc's weaknesses
 - Marc can get too centered in one single issue which might make him loose perspective of other areas that need work.
 - Marc can be a bit too focused on implementing something and iterate from there, which might cause him to overlook some issues at the beginning of the task. He eventually solves those issues when iterating later in the process.
-- Marc has a very energetic presense and high drive which makes him not fit for excessively corporate environments.
 
 
 ## References

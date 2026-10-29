@@ -31,7 +31,8 @@ def split_documents(documents):
     # "##" represents heading level 2.
     headers = [
         ('#','category'),
-        ('##','section')
+        ('##','section'),
+        ('###','topic')
     ]
 
     markdown_splitter = MarkdownHeaderTextSplitter(
