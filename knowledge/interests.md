@@ -7,6 +7,7 @@ Marc does not underestimate the importance of a good assessment before diving in
 
 ## AI and Data Science Interests
 Marc values a lot the potnetial of Data Science and AI, and believes both are critical to amplify the impact of some industries, including that of renewables, especially with decentralized renewables like commercial and industrial solar PV.
+Marc is highly curious about AI, how quickly its capabilities are developing, and its broader implications for software development, work, business, and society. He actively learns by applying AI tools to real projects and reflecting on both their opportunities and their limitations.
 As Marc got experience in his solar operational roles in solar PV asset management, he understood how critical it was for asset managers and operational teams to be familiar with big data, and work closely with BI and product teams in order to scale impact effectively.
 Marc now has a lot of domain knowledge in C&I solar energy operations, performance tracking and portfolio management, and he loves the idea of using this together with his newly acquired Data Science & AI expertise in order to scale business impact in a sector he considers critical for the future.
 Some specific areas Marc loves about Data Science and AI are:

@@ -23,6 +23,15 @@ Soft skills:
 - Peer communication
 - International background
 
+## AI-Assisted Software Development
+Marc has practical experience with AI-assisted software development using coding harnesses and assistants including Codex/ChatGPT and Claude Code. He has used these tools to help take software projects from requirements and early prototypes through architecture, implementation, debugging, testing, deployment configuration, and publicly accessible releases. Marc GPT is an example of a deployed application that can be accessed by users internationally, while PV Dome demonstrates how he has used AI assistance to develop a substantially larger full-stack MVP.
+
+Marc does not treat AI-generated output as automatically correct. He remains responsible for defining the problem and requirements, making product and architecture decisions, reviewing generated code, testing workflows, diagnosing failures, correcting implementation issues, protecting private information, and deciding what is ready to deploy. This gives him experience not only prompting AI tools, but using them critically as part of an end-to-end software-development workflow.
+
+Marc's experience is strongest in combining AI coding tools, managed cloud services, prebuilt components, platform configuration, and conventional code. He has not used named low-code platforms such as Power Apps, Retool, Bubble, Power Automate, n8n, Make, or Zapier, so his background should not be presented as hands-on low-code platform experience.
+
+The scope of each project should remain clear: Marc GPT is publicly deployed and usable online, while PV Dome is an actively developed and deployable MVP that is not yet a production-ready SaaS system.
+
 ## Currently Learning
 Marc is continuing to learn how to design, test, and deploy grounded AI applications.
 'Me GPT' is being developed iteratively, beginning with a small MVP before adding
